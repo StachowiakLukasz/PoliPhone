@@ -1,0 +1,5 @@
+{"number":3,
+"1": {"tel": "213456612", "text": "nie wiem jak dziala sim800"},
+"2": {"tel": "213456612", "text": "Czy moge kupic nowy samochod?"},
+"3": {"tel": "510283712", "text": "Szanowny Panie Doktorze"}
+}

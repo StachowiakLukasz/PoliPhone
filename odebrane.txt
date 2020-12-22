@@ -1,0 +1,5 @@
+{"number":3,
+"1": {"tel": "510762100", "text": "Do kiedy musimy oddac inzynierke?"},
+"2": {"tel": "213456612", "text": "Czesc, jak dziala sim800?"},
+"3": {"tel": "510283712", "text": "Polibuda ssie"}
+}
