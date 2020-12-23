@@ -1,5 +1,1 @@
-{"number":3,
-"1": {"tel": "532133100", "text": "Lukasz"},
-"2": {"tel": "213456612", "text": "Karol"},
-"3": {"tel": "510283712", "text": "Kacper"}
-}
+{"number": 2, "1": {"tel": "213456612", "text": "Karol"}, "2": {"tel": "510283712", "text": "Kacper"}}

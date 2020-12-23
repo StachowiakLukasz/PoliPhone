@@ -432,40 +432,40 @@ while running:
         KeyboardInput(0, 440, u"POWRÓT", False, 320, 40, center_szerokosc('POWRÓT', 30), 10, 30).display()
         if route == '112' or route == '122' or route == '114':
             ky = 0
-            for key in reversed(kontakty):
-                if isinstance(kontakty[key], int) == False and float(key)<=kontakty['number']-(kontakty_strona*8) and float(key)>(kontakty['number']-(kontakty_strona*8))-8:
-                    if len(kontakty[key]['text']) > 30: i = '...'
+            for key in range(kontakty["number"], 0, -1): #wyswietlanie kontaktow
+                if isinstance(kontakty[str(key)], int) == False and float(key)<=kontakty['number']-(kontakty_strona*8) and float(key)>(kontakty['number']-(kontakty_strona*8))-8:
+                    if len(kontakty[str(key)]['text']) > 30: i = '...'
                     else: i = ''
-                    Text(center_szerokosc(kontakty[key]['text'][:30] + i, 25), ky+7, kontakty[key]['text'][:30] + i, 25).display()
-                    KeyboardInput(0,ky, kontakty[key]['tel'][-9:], False, 320,50,center_szerokosc(kontakty[key]['tel'][-9:],25),28,25).display()
+                    Text(center_szerokosc(kontakty[str(key)]['text'][:30] + i, 25), ky+7, kontakty[str(key)]['text'][:30] + i, 25).display()
+                    KeyboardInput(0,ky, kontakty[str(key)]['tel'][-9:], False, 320,50,center_szerokosc(kontakty[str(key)]['tel'][-9:],25),28,25).display()
                     ky = ky + 50  
         elif route == '123': # wyświetlanie odebranych smsów
             ky = 0
-            for key in reversed(odebrane):
-                if isinstance(odebrane[key], int) == False and float(key)<=odebrane['number']-(odebrane_strona*8) and float(key)>(odebrane['number']-(odebrane_strona*8))-8:
-                    if len(odebrane[key]['text']) > 30: i = '...' 
+            for key in range(odebrane["number"], 0, -1):
+                if isinstance(odebrane[str(key)], int) == False and float(key)<=odebrane['number']-(odebrane_strona*8) and float(key)>(odebrane['number']-(odebrane_strona*8))-8:
+                    if len(odebrane[str(key)]['text']) > 30: i = '...'
                     else: i = ''
                     notFound = True
                     for key2 in kontakty:
-                        if isinstance(kontakty[key2], int) == False and kontakty[key2]['tel'][-9:] == odebrane[key]['tel'][-9:]:
+                        if isinstance(kontakty[key2], int) == False and kontakty[key2]['tel'][-9:] == odebrane[str(key)]['tel'][-9:]:
                             KeyboardInput(0,ky, kontakty[key2]['text'], False, 320,50,center_szerokosc(kontakty[key2]['text'],25),7,25).display()
                             notFound = False
-                    if notFound: KeyboardInput(0,ky, wyslane[key]['tel'][-9:], False, 320,50,center_szerokosc(wyslane[key]['tel'][-9:],25),7,25).display()
-                    Text(center_szerokosc(odebrane[key]['text'][:30] + i, 25), ky+28, odebrane[key]['text'][:30] + i, 25).display()
+                    if notFound: KeyboardInput(0,ky, wyslane[str(key)]['tel'][-9:], False, 320,50,center_szerokosc(wyslane[str(key)]['tel'][-9:],25),7,25).display()
+                    Text(center_szerokosc(odebrane[str(key)]['text'][:30] + i, 25), ky+28, odebrane[str(key)]['text'][:30] + i, 25).display()
                     ky = ky + 50
         elif route == '124':   # wyswietlnanie wyslanych smsow
             ky = 0
-            for key in reversed(wyslane):
-                if isinstance(wyslane[key], int) == False and float(key)<=wyslane['number']-(wyslane_strona*8) and float(key)>(wyslane['number']-(wyslane_strona*8))-8:
-                    if len(wyslane[key]['text']) > 30: i = '...' 
+            for key in range(wyslane["number"], 0, -1):
+                if isinstance(wyslane[str(key)], int) == False and float(key)<=wyslane['number']-(wyslane_strona*8) and float(key)>(wyslane['number']-(wyslane_strona*8))-8:
+                    if len(wyslane[str(key)]['text']) > 30: i = '...' 
                     else: i = ''
                     notFound = True
                     for key2 in kontakty:
-                        if isinstance(kontakty[key2], int) == False and kontakty[key2]['tel'][-9:] == wyslane[key]['tel'][-9:]:
+                        if isinstance(kontakty[key2], int) == False and kontakty[key2]['tel'][-9:] == wyslane[str(key)]['tel'][-9:]:
                             KeyboardInput(0,ky, kontakty[key2]['text'], False, 320,50,center_szerokosc(kontakty[key2]['text'],25),7,25).display()
                             notFound = False
-                    if notFound: KeyboardInput(0,ky, wyslane[key]['tel'][-9:], False, 320,50,center_szerokosc(wyslane[key]['tel'][-9:],25),7,25).display()
-                    Text(center_szerokosc(wyslane[key]['text'][:30] + i, 25), ky+28, wyslane[key]['text'][:30] + i, 25).display()
+                    if notFound: KeyboardInput(0,ky, wyslane[str(key)]['tel'][-9:], False, 320,50,center_szerokosc(wyslane[str(key)]['tel'][-9:],25),7,25).display()
+                    Text(center_szerokosc(wyslane[str(key)]['text'][:30] + i, 25), ky+28, wyslane[str(key)]['text'][:30] + i, 25).display()
                     ky = ky + 50
     elif route[:4] == '1231' or route[:4] == '1241':   # wyswietlanie szczegolow smsow ODEBRANE/WYSLANE
         numer = route[4:]
@@ -530,7 +530,6 @@ while running:
 #               
 #         Trzeba dodatkowo zakodowac interfejs przychodzacych polaczen i nowych smsow
 #         Zapis nowych smsów do odebrane.txt
-#
 #
 #-------------------------------------------------------------------------------------------
 
