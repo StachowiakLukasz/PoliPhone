@@ -12,11 +12,11 @@ pygame.init()
 # -------------------------------------------------------------------------------------------#
 
 #----Raspberry-----
-#screen = pygame.display.set_mode([320, 480], pygame.FULLSCREEN)  # Definiowanie okna
-#pygame.mouse.set_cursor((8,8),(0,0),(0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0)) # Usuwanie kursora
+screen = pygame.display.set_mode([320, 480], pygame.FULLSCREEN)  # Definiowanie okna
+pygame.mouse.set_cursor((8,8),(0,0),(0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0)) # Usuwanie kursora
 
 #----DEV-----------
-screen = pygame.display.set_mode([320, 480])
+#screen = pygame.display.set_mode([320, 480])
 
 
 #--------------------ZMIENNE GLOBALNE------------------------------------------------------------
@@ -206,7 +206,7 @@ while running:
                         if kontakty['number'] - (i + kontakty_strona*8) > 0 and x>0 and x<320 and y>50*i and y<50*(i+1):
                             k_number = kontakty[str(kontakty['number'] - kontakty_strona*8 - i)]['tel']
                             route = '1111'
-                elif route == '122':            # Pidanie SMS pod wybrany z listy kontaktow numer                             
+                elif route == '122':            # Pisanie SMS pod wybrany z listy kontaktow numer                             
                     for i in range(0,8):
                         if kontakty['number'] - (i + kontakty_strona*8) > 0 and x>0 and x<320 and y>50*i and y<50*(i+1):
                             k_number = kontakty[str(kontakty['number'] - kontakty_strona*8 - i)]['tel']
@@ -277,8 +277,8 @@ while running:
                         #           (string) k_text -> tekst wiadomosci      
                         #  Tutaj wpisac polecenie wysylania SMSa na SIM800  
                         #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                        wyslane[wyslane['number']+1] = {"tel": k_number, "text": k_text}  #zapis wyslanego smsa
-                        wyslane['number'] = int(wyslane['number'] + 1)
+                        wyslane[str(wyslane['number']+1)] = {"tel": k_number, "text": k_text}  #zapis wyslanego smsa
+                        wyslane['number'] = wyslane['number'] + 1
                         with open('wyslane.txt', 'w') as file:
                             json.dump(wyslane, file)
                         route = route + '1'         # route = 12111 -> ekran wysylania smsa
